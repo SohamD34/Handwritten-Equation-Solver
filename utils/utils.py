@@ -6,16 +6,6 @@ from os import listdir
 from os.path import isfile, join
 import pandas as pd
 
-unique_labels = [i for i in range(0, 67)]
-label_to_char_dict = {}
-dirs = ['0','1','2','3','4','5','6','7','8','9','equals','plus','minus','times','div']
-
-for ascii_num in range(97, 123):    # a-z
-    dirs.append(chr(ascii_num))
-for ascii_num in range(65, 91):    # A-Z
-    dirs.append(chr(ascii_num))
-for i in range(len(dirs)):
-    label_to_char_dict[unique_labels[i]] = dirs[i]
 
 def load_images_from_folder(folder):
 
@@ -49,6 +39,21 @@ def load_images_from_folder(folder):
             train_data.append(im_resize)
             
     return train_data      
+
+
+#_________________________________________________________________________________________
+
+unique_labels = [i for i in range(0, 67)]
+label_to_char_dict = {}
+dirs = ['0','1','2','3','4','5','6','7','8','9','equals','plus','minus','times','div']
+
+for ascii_num in range(97, 123):    # a-z
+    dirs.append(chr(ascii_num))
+for ascii_num in range(65, 91):    # A-Z
+    dirs.append(chr(ascii_num))
+for i in range(len(dirs)):
+    label_to_char_dict[unique_labels[i]] = dirs[i]
+    
 
 def label_to_char(label):
     ''' Function to convert label to character '''
