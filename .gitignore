@@ -163,3 +163,10 @@ data/
 test_data/
 ref/
 models/
+CharacterNet.pth
+ScheduledCharacterNet_model.pth
+AdversarialCharacterNet.pth
+CustomScheduledCharacterNet_model.pth
+UnscheduledCharacterNet_model.pth
+solve.py
+CharacterNet2.pth

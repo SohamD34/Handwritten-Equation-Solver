@@ -5,7 +5,8 @@ import os
 from os import listdir
 from os.path import isfile, join
 import pandas as pd
-
+import torch
+import sklearn
 
 def load_images_from_folder(folder):
 
@@ -42,20 +43,121 @@ def load_images_from_folder(folder):
 
 
 #_________________________________________________________________________________________
-
-unique_labels = [i for i in range(0, 67)]
-label_to_char_dict = {}
-dirs = ['0','1','2','3','4','5','6','7','8','9','equals','plus','minus','times','div']
-
-for ascii_num in range(97, 123):    # a-z
-    dirs.append(chr(ascii_num))
-for ascii_num in range(65, 91):    # A-Z
-    dirs.append(chr(ascii_num))
-for i in range(len(dirs)):
-    label_to_char_dict[unique_labels[i]] = dirs[i]
     
 
 def label_to_char(label):
     ''' Function to convert label to character '''
+
     global label_to_char_dict
-    return label_to_char_dict[label]          
+
+    unique_labels = [i for i in range(0, 67)]
+    label_to_char_dict = {}
+    dirs = ['0','1','2','3','4','5','6','7','8','9','equals','plus','minus','times','div']
+
+    for ascii_num in range(97, 123):    # a-z
+        dirs.append(chr(ascii_num))
+    for ascii_num in range(65, 91):    # A-Z
+        dirs.append(chr(ascii_num))
+    for i in range(len(dirs)):
+        label_to_char_dict[unique_labels[i]] = dirs[i]  
+
+    return label_to_char_dict[label]   
+
+#______________________________________________________________________________________________
+
+def fgsm_attack(data, epsilon, data_grad):
+    sign_data_grad = data_grad.sign()
+    perturbed_data = data + epsilon * sign_data_grad
+    perturbed_data = torch.clamp(perturbed_data, 0, 1)
+    return perturbed_data
+
+#______________________________________________________________________________________________
+
+from sklearn.preprocessing import OneHotEncoder
+# Adversarial training loop
+def adversarial_train(model, data, device, train_loader, optimizer, criterion, epsilon, klm, custom=True):
+
+    model.train()
+    running_loss = 0.0
+
+    all_labels = []
+    all_predictions = []
+
+    for batch_idx, (images, labels) in enumerate(train_loader):
+        images = images.to(device)
+
+        encoder = OneHotEncoder(categories=[data.classes])
+        labels_encoded = encoder.fit_transform(labels.reshape(-1, 1)).toarray()
+        labels_encoded = torch.Tensor(labels_encoded).to(device)
+
+        images.requires_grad = True
+
+        optimizer.zero_grad()
+        outputs = model(images)
+        loss = criterion(outputs, labels_encoded)
+        loss.backward(retain_graph=True)  # Add retain_graph=True
+
+        # Generate adversarial examples
+        data_grad = images.grad.data
+        perturbed_images = fgsm_attack(images, epsilon, data_grad)
+
+        # Update model with both original and adversarial examples
+        outputs_adv = model(perturbed_images)
+        
+        loss_adv = criterion(outputs_adv, labels_encoded)
+        total_loss = loss + loss_adv
+        factor = 1
+
+        if custom == True:
+            factor = (101- (4*(klm-1)/100) )
+
+        total_loss = total_loss*factor  # this should be remove
+
+        total = labels.size(0)
+        _, predicted = torch.max(outputs_adv.data, 1)
+        _, expected = torch.max(labels_encoded, 1)
+        correct = (predicted == expected).sum().item()
+
+        all_labels.extend(list(expected.cpu().numpy()))
+        all_predictions.extend(list(predicted.cpu().numpy()))
+
+        running_loss += total_loss.item()
+        loss_adv.backward()  # Add retain_graph=True
+        optimizer.step()  
+
+    train_loss = running_loss/(factor*len(train_loader))
+    train_acc = sklearn.metrics.accuracy_score(all_labels, all_predictions)
+    print('Loss:',train_loss,end=" ") 
+    print('Train accuracy:',train_acc, end=" ")
+
+    return train_loss, train_acc
+
+#______________________________________________________________________________________________
+
+    
+def adversarial_validate(model, device, val_loader, criterion):
+    model.eval()
+    running_loss = 0.0
+    all_labels = []
+    all_predictions = []
+
+    with torch.no_grad():
+        for images, labels in val_loader:
+            images = images.to(device)
+            labels = labels.to(device)
+
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+
+            _, predicted = torch.max(outputs.data, 1)
+            all_labels.extend(list(labels.cpu().numpy()))
+            all_predictions.extend(list(predicted.cpu().numpy()))
+
+            running_loss += loss.item()
+
+    val_loss = running_loss / len(val_loader)
+    val_acc = sklearn.metrics.accuracy_score(all_labels, all_predictions)
+    print('Validation Loss:', val_loss, end=" ")
+    print('Validation Accuracy:',val_acc)
+
+    return val_loss, val_acc     

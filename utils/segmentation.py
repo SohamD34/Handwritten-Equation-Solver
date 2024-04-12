@@ -53,10 +53,10 @@ def create_segments(img):
     final_rect=[i for i in rects if i not in dump_rect]
 
     for r in final_rect:
-        x=r[0]
-        y=r[1]
-        w=r[2]
-        h=r[3]
+        x = r[0]
+        y = r[1]
+        w = r[2]
+        h = r[3]
         im_crop = thresh[y:y+h+10,x:x+w+10]
         
         im_resize = cv2.resize(im_crop,(28,28))
