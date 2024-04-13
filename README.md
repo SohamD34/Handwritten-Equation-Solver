@@ -14,6 +14,8 @@ root
 |--------- README.md
 |--------- requirements.txt
 |--------- .gitignore
+|--------- data
+|           |------- character_data
 |--------- utils
 |           |------- utils.py
 |           |------- extraction.py
