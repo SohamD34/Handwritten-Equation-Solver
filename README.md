@@ -7,22 +7,27 @@
 - Mohit Sharma (B21EE037)
 - Soham Niraj Deshmukh (B21EE067)
 
-### Contents
-
-| Sr. No. | Title                     | Pg.No. |
-|---------|---------------------------|--------|
-| 1.      | Problem Statement         | 3      |
-| 2.      | Solution Strategy         | 4      |
-| 3.      | Dataset                   | 6      |
-| 4.      | Methodology and Innovations | 7    |
-| 5.      | Results                   | 9      |
-| 6.      | Critical Analysis         | 11     |
-| 7.      | Conclusion                | 12     |
-| 8.      | References                | 13     |
+### Directory 
+'''
+root
+|--------- LICENSE
+|--------- README.md
+|--------- requirements.txt
+|--------- .gitignore
+|--------- utils
+|           |------- utils.py
+|           |------- extraction.py
+|           |------- segmentation.py
+|--------- masked_cluster_segment.ipynb
+|--------- train.ipynb
+|--------- adversarial_train.ipynb
+|--------- my_dict.json
+|--------- equationsolver.ipynb
+'''
 
 ### Problem Statement
 
-The primary objective of this research paper is to develop a robust and accurate Handwritten Equation Solver using Deep Learning techniques.
+The primary objective of this research project is to develop a robust and accurate Handwritten Equation Solver using Deep Learning techniques.
 
 Despite the significant strides made in the field of Optical Character Recognition (OCR) and Deep Learning, handwritten equation recognition and solving remains a complex task. This complexity arises from the intricate and complex nature of mathematical symbols, the diversity of handwriting styles, and the need for a nuanced understanding of mathematical symbols to accurately solve the equations.
 
