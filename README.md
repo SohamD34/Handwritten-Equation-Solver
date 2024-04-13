@@ -8,7 +8,7 @@
 - Soham Niraj Deshmukh (B21EE067)
 
 ### Directory 
-'''
+~~~
 root
 |--------- LICENSE
 |--------- README.md
@@ -23,7 +23,7 @@ root
 |--------- adversarial_train.ipynb
 |--------- my_dict.json
 |--------- equationsolver.ipynb
-'''
+~~~
 
 ### Problem Statement
 
