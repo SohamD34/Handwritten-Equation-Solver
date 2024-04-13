@@ -35,6 +35,19 @@ Despite the significant strides made in the field of Optical Character Recogniti
 
 Our project aims to address these challenges by proposing a relatively low-compute Deep Learning-based approach for handwritten equation recognition and solving. By leveraging image data of popular mathematical characters, we seek to develop a pipeline that can accurately recognize and solve handwritten mathematical equations. Our approach, by being relatively low-compute, aims to provide a viable alternative to the current SoTA solutions, particularly in resource-constrained environments.
 
+* Setting up environment
+~~~
+conda create -n venv
+~~~
+* Activate the environment
+~~~
+conda activate venv
+~~~
+* Install requirements
+~~~
+pip install requirements.txt
+~~~
+
 ### Dataset
 
 The image dataset used for training the CharacterNet architecture was derived from the following sources.
