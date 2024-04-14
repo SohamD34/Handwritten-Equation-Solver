@@ -47,6 +47,11 @@ conda activate venv
 ~~~
 pip install requirements.txt
 ~~~
+* Run the training script using train.ipynb.
+* Run the solver script.
+~~~
+python equationsolver.py
+~~~
 
 ### Dataset
 
