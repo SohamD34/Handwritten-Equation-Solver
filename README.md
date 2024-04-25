@@ -45,7 +45,7 @@ conda activate venv
 ~~~
 * Install requirements
 ~~~
-pip install requirements.txt
+pip install -r requirements.txt
 ~~~
 * Run the training script using train.ipynb.
 * Run the solver script.
