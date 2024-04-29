@@ -69,8 +69,8 @@ python equationsolver.py
 
 The image dataset used for training the CharacterNet architecture was derived from the following sources.
 
-- Dataset link: Handwritten Math Symbols [Link](https://www.kaggle.com/datasets/xainano/handwrittenmathsymbols)
-- Custom created smaller version of dataset [Link](https://drive.google.com/drive/folders/1kENoMUhq74NdzhTBcCX8PGKdBUrKGOb3?usp=sharing)
+- Dataset link: Handwritten Math Symbols [[Link](https://www.kaggle.com/datasets/xainano/handwrittenmathsymbols)]
+- Custom created smaller version of dataset [[Link](https://drive.google.com/drive/folders/1kENoMUhq74NdzhTBcCX8PGKdBUrKGOb3?usp=sharing)]
 
 Total data points = 16,500
 
