@@ -84,3 +84,7 @@ Preprocessing of dataset:
 
 Our architecture achieved accuracy of 95% on the training dataset and accuracy of 85% on the validation set for the simple CNN model, demonstrating its effectiveness in recognizing handwritten equations.
 We performed adversarial training on the model using manipulated and noisy input images to make the model more robust, ensuring reliable performance in real-world scenarios in case of unseen and altered inputs.
+
+![image](https://github.com/SohamD34/Handwritten-Equation-Solver/assets/96857578/d8196105-5167-4879-bc3b-0f4ef198494a)
+![image](https://github.com/SohamD34/Handwritten-Equation-Solver/assets/96857578/d5c39741-0e21-4395-b760-32e223a9f954)
+
