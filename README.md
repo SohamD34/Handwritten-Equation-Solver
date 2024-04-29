@@ -43,11 +43,23 @@ conda create -n venv
 ~~~
 conda activate venv
 ~~~
+* In Git Bash, navigate to the desired folder location.
+~~~
+cd /desired_folder_path/
+~~~
+* Clone the repository.
+~~~
+git clone https://github.com/SohamD34/Handwritten-Equation-Solver.git
+~~~
 * Install requirements
 ~~~
 pip install -r requirements.txt
 ~~~
-* Run the training script using train.ipynb.
+* Download the dataset in the '/data' folder.
+~~~
+/root/Handwritten-Equation-Solver/data
+~~~
+* Run the training script using train.ipynb. For adversarial training, use adversarial_train.ipynb.
 * Run the solver script.
 ~~~
 python equationsolver.py
