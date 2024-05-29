@@ -1,12 +1,6 @@
 # Handwritten-Equation-Solver
 
 
-*Team Members*  
-- Lakshit Choubisa (B21AI057)
-- Lokesh Tanwar (B21EE035)
-- Mohit Sharma (B21EE037)
-- Soham Niraj Deshmukh (B21EE067)
-
 ### Directory 
 ~~~
 root
@@ -90,3 +84,9 @@ We performed adversarial training on the model using manipulated and noisy input
 ![image](https://github.com/SohamD34/Handwritten-Equation-Solver/assets/96857578/d8196105-5167-4879-bc3b-0f4ef198494a)
 ![image](https://github.com/SohamD34/Handwritten-Equation-Solver/assets/96857578/d5c39741-0e21-4395-b760-32e223a9f954)
 
+
+### Contributors  
+- Lakshit Choubisa (B21AI057)
+- Lokesh Tanwar (B21EE035)
+- Mohit Sharma (B21EE037)
+- [Soham Niraj Deshmukh (B21EE067)](https://www.github.com/SohamD34)
