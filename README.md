@@ -14,16 +14,18 @@ root
 |--------- README.md
 |--------- requirements.txt
 |--------- .gitignore
+|--------- my_dict.json
 |--------- data
 |           |------- character_data
+|           |------- character_csv
+|--------- test_data
 |--------- utils
 |           |------- utils.py
 |           |------- extraction.py
 |           |------- segmentation.py
-|--------- masked_cluster_segment.ipynb
+|           |------- masked_cluster_segment.py
 |--------- train.ipynb
 |--------- adversarial_train.ipynb
-|--------- my_dict.json
 |--------- equationsolver.ipynb
 ~~~
 
