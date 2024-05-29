@@ -86,7 +86,7 @@ We performed adversarial training on the model using manipulated and noisy input
 
 
 ### Contributors  
-- Lakshit Choubisa (B21AI057)
-- Lokesh Tanwar (B21EE035)
-- Mohit Sharma (B21EE037)
 - [Soham Niraj Deshmukh (B21EE067)](https://www.github.com/SohamD34)
+- [Lakshit Choubisa (B21AI057)](https://github.com/Lakshit24sa)
+- [Lokesh Tanwar (B21EE035)](https://github.com/Lokesh23102002)
+- [Mohit Sharma (B21EE037)](https://github.com/mohitsharma-iitj)
