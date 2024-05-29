@@ -74,7 +74,7 @@ def fgsm_attack(data, epsilon, data_grad):
 #______________________________________________________________________________________________
 
 from sklearn.preprocessing import OneHotEncoder
-# Adversarial training loop
+
 def adversarial_train(model, data, device, train_loader, optimizer, criterion, epsilon, klm, custom=True):
 
     model.train()
@@ -160,4 +160,71 @@ def adversarial_validate(model, device, val_loader, criterion):
     print('Validation Loss:', val_loss, end=" ")
     print('Validation Accuracy:',val_acc)
 
-    return val_loss, val_acc     
+    return val_loss, val_acc   
+
+#______________________________________________________________________________________________
+
+def plot_image(img):
+    gray_image = cv2.cvtColor(ii, cv2.COLOR_BGR2GRAY)
+    gray_image = cv2.resize(gray_image, (28,28))
+    gray_image = gray_image.reshape((1,28,28))
+    data = torch.Tensor(np.array([gray_image])).to(device)
+    output = model(data)
+    _, predicted = torch.max(output.data, 1)
+    plt.figure(figsize=(3,3))
+    plt.imshow(gray_image[0])
+    plt.show()
+    print(mapping[predicted.cpu().numpy()[0]])
+
+#______________________________________________________________________________________________
+
+
+def evaluate(expression):
+    def apply_operator(operators, values):
+        operator = operators.pop()
+        right = values.pop()
+        left = values.pop()
+        if operator == '+':
+            values.append(left + right)
+        elif operator == '-':
+            values.append(left - right)
+        elif operator == '*':
+            values.append(left * right)
+        elif operator == '/':
+            values.append(left / right)
+
+    def greater_precedence(op1, op2):
+        precedences = {'+': 1, '-': 1, '*': 2, '/': 2}
+        return precedences[op1] > precedences[op2]
+
+    operators = []
+    values = []
+    i = 0
+    while i < len(expression):
+        if expression[i] == ' ':
+            i += 1
+            continue
+        if expression[i] in '0123456789':
+            j = i
+            while j < len(expression) and expression[j] in '0123456789':
+                j += 1
+            values.append(int(expression[i:j]))
+            i = j
+        else:
+            if expression[i] == '(':
+                operators.append(expression[i])
+            elif expression[i] == ')':
+                while operators and operators[-1] != '(':
+                    apply_operator(operators, values)
+                operators.pop()
+            else:
+                while (operators and operators[-1] != '(' and
+                       greater_precedence(operators[-1], expression[i])):
+                    apply_operator(operators, values)
+                operators.append(expression[i])
+            i += 1
+
+    while operators:
+        apply_operator(operators, values)
+
+    return values[0]
