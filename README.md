@@ -55,9 +55,15 @@ pip install -r requirements.txt
 ~~~
 /root/Handwritten-Equation-Solver/data
 ~~~
+* Segment the characters from the testing data
+~~~
+cd ../utils
+python extraction.py
+python masked_cluster_segment.py
+~~~
 * Run the training script using src/train.py. For adversarial training, use src/adversarial_train.py.
 ~~~
-cd src/
+cd ../src
 python train.py
 python adversarial_train.py
 ~~~
