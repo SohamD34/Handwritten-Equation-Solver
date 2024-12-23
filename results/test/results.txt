@@ -1,0 +1,5 @@
+Accuracy of Unscheduled Character Net = 0.8246105
+
+Accuracy of Scheduled Character Net = 0.9140625
+
+Accuracy of Custom Scheduled Character Net = 0.8515625
