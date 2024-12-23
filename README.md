@@ -55,10 +55,16 @@ pip install -r requirements.txt
 ~~~
 /root/Handwritten-Equation-Solver/data
 ~~~
-* Run the training script using train.ipynb. For adversarial training, use adversarial_train.ipynb.
+* Run the training script using src/train.py. For adversarial training, use src/adversarial_train.py.
+~~~
+cd src/
+python train.py
+python adversarial_train.py
+~~~
 * Run the solver script.
 ~~~
-python equationsolver.py
+cd ..
+jupyter notebook equationsolver.ipynb
 ~~~
 
 ### Dataset
